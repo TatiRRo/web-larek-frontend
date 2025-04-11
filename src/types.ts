@@ -1,9 +1,13 @@
 import './scss/styles.scss';
 
+// Методы оплаты заказа
+
 export enum PaymentMethod {
 	Online = 'online',
 	Offline = 'offline',
 }
+
+// Интерфейс продукта
 
 export interface IProduct {
 	id: string;
@@ -14,47 +18,28 @@ export interface IProduct {
 	price: number | string;
 }
 
-export interface IOrder {
+// Интерфейс формы при оформлении заказа
+
+export interface IOrderContactsData {
 	payment: PaymentMethod;
 	address: string;
 	email: string;
 	phone: string;
+}
+
+// Интерфейс заказа
+
+export interface IOrder extends IOrderContactsData {
+	total: string | number;
+	items: string[];
+}
+
+// Интерфейс итогового заказа
+
+export interface IOrderSuccess {
+	id: string;
 	total: number;
-	items: IProductInBasket[];
 }
 
-export interface IProductsData {
-	products: IProduct[];
-	preview: string | null;
-	getCard(cardId: string): IProduct | undefined;
-}
-
-export interface IOrderData {
-	getOrderInfo(): IBasket;
-	setOrderInfo(orderData: IOrder): void;
-	deleteProduct(basketId: string, payload: Function | null): void;
-	updateOrder(order: IBasket, payload: Function | null): void;
-	checkOrderValidation(
-		data: Record<keyof IPaymentPage, IContactsCustomer>
-	): boolean;
-}
-
-export type IProductItemList = Pick<
-	IProduct,
-	'category' | 'title' | 'image' | 'price'
->;
-
-export type IProductPopup = Pick<
-	IProduct,
-	'category' | 'title' | 'image' | 'description' | 'price'
->;
-
-export type IProductInBasket = Pick<IProduct, 'title' | 'price'>;
-
-export type IBasket = Pick<IOrder, 'items' | 'total'>;
-
-export type IPaymentPage = Pick<IOrder, 'payment' | 'address'>;
-
-export type IContactsCustomer = Pick<IOrder, 'email' | 'phone'>;
-
-export type IConfirmationOrder = Pick<IOrder, 'total'>;
+// Ошибка формы
+export type FormErrors = Partial<Record<keyof IOrder, string>>;
