@@ -1,10 +1,8 @@
-import './scss/styles.scss';
-
 // Методы оплаты заказа
 
 export enum PaymentMethod {
-	Online = 'online',
-	Offline = 'offline',
+	Online = 'card',
+	Offline = 'cash',
 }
 
 // Интерфейс продукта
@@ -15,7 +13,7 @@ export interface IProduct {
 	title: string;
 	image: string;
 	description: string;
-	price: number | string;
+	price: number;
 }
 
 // Интерфейс формы при оформлении заказа
@@ -29,17 +27,27 @@ export interface IOrderContactsData {
 
 // Интерфейс заказа
 
-export interface IOrder extends IOrderContactsData {
-	total: string | number;
-	items: string[];
+export interface IOrderForm extends IOrderContactsData {
+	total?: string | number;
+	items?: string[];
 }
 
 // Интерфейс итогового заказа
 
-export interface IOrderSuccess {
+export interface IOrderResult {
 	id: string;
 	total: number;
 }
 
+// интерфейсы данных заказа
+export interface IOrderLot {
+	payment: string;
+	email: string;
+	phone: string;
+	address: string;
+	total: number;
+	items: string[];
+}
+
 // Ошибка формы
-export type FormErrors = Partial<Record<keyof IOrder, string>>;
+export type FormErrors = Record<keyof IOrderContactsData, boolean>;
