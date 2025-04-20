@@ -13,7 +13,7 @@ import {
 	IProduct,
 	PaymentMethod,
 } from './types';
-import { AppState, CatalogChangeEvent } from './components/presenter/AppState';
+import { AppState, CatalogChangeEvent } from './components/model/AppState';
 import { Basket } from './components/view/Basket';
 import { Success } from './components/view/Success';
 import { OrderForm } from './components/view/OrderForm';

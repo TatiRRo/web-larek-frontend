@@ -82,8 +82,10 @@ export class Card extends Component<CardData> {
 	}
 
 	set category(value: string) {
-		this.setText(this._category, value);
-		this._category.classList.add(`${categories[value]}`);
+		if (this._category) {
+			this._category.textContent = value;
+			this._category.className = `card__category ${categories[value]}`;
+		}
 	}
 
 	set price(value: number) {

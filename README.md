@@ -8,7 +8,6 @@
 - src/components/ — папка с JS компонентами
 - src/components/base/ — папка с базовым кодом
 - src/components/model/ — папка с Model
-- src/components/presenter/ — папка с Presenter
 - src/components/view/ — папка с View
 
 Важные файлы:
@@ -113,7 +112,7 @@ yarn build
 
 - `emitChanges(event: string, payload?: object)` - сообщить всем что модель поменялась
 
-### Класс Model
+### Классы Model
 
 #### Класс WebLarekAPI
 
@@ -122,8 +121,6 @@ yarn build
 
 - `getProductList(): Promise<IProduct[]>` - получить список карточек товаров с сервера
 - `postOrder(order: IOrderLot): Promise<IOrderResult>` - отправить заказ на сервер.
-
-### Класс Presenter
 
 #### Класс AppState
 
